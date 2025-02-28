@@ -37,6 +37,7 @@ def checkDiangnal(board):
       return(row1[2])
   return('')
 
+print()
 for row in board:
   print(row)
 print()
@@ -51,32 +52,33 @@ while not winner and turn < 10:
       player = 'X'
 
     move = int(input(f'Where would you like to place you {player}? '))
-
+    
     #  convert to x y cords
     y = (move % (len(board[0])) - 1)
     x = (math.ceil(move / len(board[y])) - 1)
 
-    if board[x][y] in ['X','O'] and board[x][y] not in [1, 2, 3, 4, 5, 6, 7, 8, 9]:
-        print("That spot is not availible.")
+    if board[x][y] in ['X','O'] or board[x][y] not in [1, 2, 3, 4, 5, 6, 7, 8, 9]:
+      print("That spot is not availible.")
     else:
       board[x][y] = player
 
       # Display Board
+      print()
       for row in board:
         print(row)
       print()
       # Check Horizontal
       if checkHorizontal(board):
-         winner = checkHorizontal(board)
-         print(f'{winner} wins!')
+        winner = checkHorizontal(board)
+        print(f'{winner} wins!')
       # Check Vertical
       if checkVertical(board):
-         winner = checkVertical(board)
-         print(f'{winner} wins!')
+        winner = checkVertical(board)
+        print(f'{winner} wins!')
       # Check Diangonal
       if checkDiangnal(board):
-         winner = checkDiangnal(board)
-         print(f'{winner} wins!')
+        winner = checkDiangnal(board)
+        print(f'{winner} wins!')
       turn += 1
 
 if not winner:
